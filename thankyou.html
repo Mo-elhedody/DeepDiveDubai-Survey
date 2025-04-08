@@ -76,4 +76,24 @@
     }, 5000);
   </script>
 </body>
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<script>
+  // Prevent back navigation from returning to the filled form
+  history.pushState(null, '', location.href);
+  window.addEventListener('popstate', function () {
+    history.pushState(null, '', location.href);
+  });
+
+  // Immediately redirect if the user refreshes the page
+  if (performance.navigation.type === 1) {
+    // 1 means the user refreshed the page
+    window.location.href = "index.html";
+  }
+
+  // Automatically redirect to landing page after 5 seconds
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5000);
+</script>
+
 </html>
