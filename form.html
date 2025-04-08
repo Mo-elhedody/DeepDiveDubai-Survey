@@ -198,8 +198,8 @@
       })
       .then(res => res.text())
       .then(text => {
-        console.log("Response:", text);
-        window.location.href = "thankyou.html"; // Redirect to thank-you page
+   sessionStorage.setItem("submitted", "true"); // Flag this session
+  window.location.href = "thankyou.html";
 })
       .catch(err => {
         console.error("Error submitting form:", err);
