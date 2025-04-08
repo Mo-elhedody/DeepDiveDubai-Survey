@@ -177,32 +177,34 @@
   </div>
 
   <script>
-    // Redirect if already submitted during this session
-    if (sessionStorage.getItem("submitted") === "true") {
-      window.location.href = "index.html";
-    }
+  // Redirect to landing page if already submitted (persisted using localStorage)
+  if (localStorage.getItem("submitted") === "true") {
+    window.location.href = "index.html";
+  }
 
-    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-      const form = e.target;
-      const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(text => {
-        console.log("Response:", text);
-        sessionStorage.setItem("submitted", "true");
-        window.location.href = "thankyou.html";
-      })
-      .catch(err => {
-        console.error("Submission error:", err);
-        alert("Something went wrong. Please try again!");
-      });
+    fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.text())
+    .then(text => {
+      console.log("Response:", text);
+      // Set flag that prevents access to form again
+      localStorage.setItem("submitted", "true");
+      window.location.href = "thankyou.html";  // redirect to thank you
+    })
+    .catch(err => {
+      console.error("Error submitting form:", err);
+      alert("Something went wrong!");
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
