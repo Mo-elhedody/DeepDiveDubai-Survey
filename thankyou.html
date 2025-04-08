@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Thank You!</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #001f2e;
-      color: #fff;
       font-family: 'Segoe UI', sans-serif;
+      background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
       flex-direction: column;
-      padding: 20px;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+    }
+
+    .thank-you-box {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 15px;
+      border: 2px solid #00bcd4;
+      box-shadow: 0 0 15px #00bcd4;
     }
 
     h1 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
       color: #00bcd4;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
     }
 
     p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      max-width: 500px;
+      font-size: 1.2em;
+      margin-bottom: 20px;
     }
 
-    img {
-      width: 120px;
-      height: auto;
+    .tenor-gif-embed {
+      max-width: 400px;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
-  <h1>Thank You!</h1>
-  <p>Your feedback has been submitted successfully.<br>Your certificate is being prepared and will be emailed to you within 5 minutes.</p>
- <img src="https://tenor.com/pl/view/hkumed-hkumedsticker-hku-university-hong-kong-gif-19744981" alt="Preparing Certificate">
+  <div class="thank-you-box">
+    <h1>Thank You!</h1>
+    <p>Your feedback has been submitted successfully.<br>Your certificate is being prepared and will be emailed to you within 5 minutes.</p>
+
+    <!-- Tenor Embed -->
+    <div class="tenor-gif-embed" data-postid="19744981" data-share-method="host" data-aspect-ratio="1.28" data-width="100%">
+      <a href="https://tenor.com/view/hkumed-hkumedsticker-hku-university-hong-kong-gif-19744981">View GIF</a> from <a href="https://tenor.com">Tenor</a>
+    </div>
+  </div>
+
+  <!-- Embed script (must be included once in body) -->
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 </body>
 </html>
