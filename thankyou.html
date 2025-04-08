@@ -25,6 +25,7 @@
       border-radius: 15px;
       border: 2px solid #00bcd4;
       box-shadow: 0 0 15px #00bcd4;
+      max-width: 700px;
     }
 
     h1 {
@@ -42,34 +43,31 @@
       max-width: 400px;
       margin: 0 auto;
     }
-
-    .note {
-      font-size: 0.95em;
-      color: #ccc;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
   <div class="thank-you-box">
     <h1>Thank You!</h1>
-    <p>Your feedback has been submitted successfully.<br>Your certificate is being prepared and will be emailed to you within 5 minutes.</p>
+    <p>Your feedback has been submitted.<br>Your certificate will arrive shortly.</p>
 
     <div class="tenor-gif-embed" data-postid="19744981" data-share-method="host" data-aspect-ratio="1.28" data-width="100%">
       <a href="https://tenor.com/view/hkumed-hkumedsticker-hku-university-hong-kong-gif-19744981">View GIF</a>
     </div>
-
-    <div class="note">You will be redirected to the home page in 10 seconds...</div>
   </div>
 
   <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-
   <script>
-    // Clear submission flag after redirect delay
+    // Prevent going back to the form using back button
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function () {
+      history.pushState(null, document.title, location.href);
+    });
+
+    // After 5 seconds, redirect to landing page
     setTimeout(() => {
       localStorage.removeItem("submitted");
       window.location.href = "index.html";
-    }, 10000); // 10000 milliseconds = 10 seconds
+    }, 5000);
   </script>
 </body>
 </html>
