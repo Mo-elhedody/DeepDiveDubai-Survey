@@ -42,6 +42,12 @@
       max-width: 400px;
       margin: 0 auto;
     }
+
+    .note {
+      font-size: 0.95em;
+      color: #ccc;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -49,13 +55,21 @@
     <h1>Thank You!</h1>
     <p>Your feedback has been submitted successfully.<br>Your certificate is being prepared and will be emailed to you within 5 minutes.</p>
 
-    <!-- Tenor Embed -->
     <div class="tenor-gif-embed" data-postid="19744981" data-share-method="host" data-aspect-ratio="1.28" data-width="100%">
-      <a href="https://tenor.com/view/hkumed-hkumedsticker-hku-university-hong-kong-gif-19744981">View GIF</a> from <a href="https://tenor.com">Tenor</a>
+      <a href="https://tenor.com/view/hkumed-hkumedsticker-hku-university-hong-kong-gif-19744981">View GIF</a>
     </div>
+
+    <div class="note">You will be redirected to the home page in 10 seconds...</div>
   </div>
 
-  <!-- Embed script (must be included once in body) -->
   <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+  <script>
+    // Clear submission flag after redirect delay
+    setTimeout(() => {
+      localStorage.removeItem("submitted");
+      window.location.href = "index.html";
+    }, 10000); // 10000 milliseconds = 10 seconds
+  </script>
 </body>
 </html>
