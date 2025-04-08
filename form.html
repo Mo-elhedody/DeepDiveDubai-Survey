@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deep Dive Dubai Guest Survey</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: #ffffff;
+    }
+
+    .form-container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: rgba(67, 65, 65, 0.85);
+      padding: 40px 30px;
+      border-radius: 15px;
+      border: 2px solid #00bcd4;
+      box-shadow: 0 0 15px #00bcd4;
+      position: relative;
+    }
+
+    .form-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      height: 60px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00bcd4;
+      margin-bottom: 30px;
+      padding-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    input[type="submit"] {
+      background-color: #00bcd4;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #008c9e;
+    }
+
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      margin-top: 5px;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 2em;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: gold;
+    }
+
+    .success-message {
+      display: none;
+      color: #4caf50;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <img src="https://storage.googleapis.com/freedivinguae.com/2022/03/59a19db5-ddd_englishlogo.png" alt="Logo" class="form-logo">
+
+    <h1>Deep Dive Dubai Guest Survey</h1>
+    <form id="feedbackForm">
+      <label for="name">First Name *</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="surname">Surname *</label>
+      <input type="text" name="surname" id="surname" required>
+
+      <label for="email">Email Address *</label>
+      <input type="email" name="email" id="email" required>
+
+      <label>Overall, how would you rate your diving experience? *</label>
+      <div class="star-rating">
+        <input type="radio" name="experience_rating" value="5" id="er5" required><label for="er5">★</label>
+        <input type="radio" name="experience_rating" value="4" id="er4"><label for="er4">★</label>
+        <input type="radio" name="experience_rating" value="3" id="er3"><label for="er3">★</label>
+        <input type="radio" name="experience_rating" value="2" id="er2"><label for="er2">★</label>
+        <input type="radio" name="experience_rating" value="1" id="er1"><label for="er1">★</label>
+      </div>
+
+      <label for="instructor">Who was your dive instructor? *</label>
+      <select name="instructor" id="instructor" required>
+        <option value="">-- Select Instructor --</option>
+        <option>ANASTASIA</option>
+        <option>SERGEI</option>
+        <option>ANDY</option>
+        <option>LIER</option>
+        <option>MUSTAFA</option>
+        <option>HANNI</option>
+        <option>ABDO</option>
+        <option>CHARLIE</option>
+        <option>DARIO</option>
+        <option>ERICSON</option>
+        <option>TITO</option>
+        <option>IMANTHA</option>
+        <option>EVANGELINE</option>
+        <option>IMANE</option>
+        <option>RICCARDO</option>
+        <option>MOHAB</option>
+        <option>HARIDI</option>
+        <option>ERNEST</option>
+        <option>YEHYA</option>
+        <option>Jesper</option>
+        <option>Dimitris</option>
+        <option>JARROD</option>
+        <option>RICHARD</option>
+      </select>
+
+      <label>How would you rate your instructor? *</label>
+      <div class="star-rating">
+        <input type="radio" name="instructor_rating" value="5" id="ir5" required><label for="ir5">★</label>
+        <input type="radio" name="instructor_rating" value="4" id="ir4"><label for="ir4">★</label>
+        <input type="radio" name="instructor_rating" value="3" id="ir3"><label for="ir3">★</label>
+        <input type="radio" name="instructor_rating" value="2" id="ir2"><label for="ir2">★</label>
+        <input type="radio" name="instructor_rating" value="1" id="ir1"><label for="ir1">★</label>
+      </div>
+
+      <label for="highlight">What did you like the most about your dive? *</label>
+      <textarea id="highlight" name="highlight" rows="3" required></textarea>
+
+      <label for="dislike">Was there anything you didn’t like? *</label>
+      <textarea id="dislike" name="dislike" rows="3" required></textarea>
+
+      <label for="hall_experience">How was your experience in the hall/facility? *</label>
+      <textarea id="hall_experience" name="hall_experience" rows="3" required></textarea>
+
+      <label for="recommend">Would you recommend Deep Dive Dubai to others? *</label>
+      <select id="recommend" name="recommend" required>
+        <option value="">-- Select --</option>
+        <option value="Definitely">Definitely</option>
+        <option value="Maybe">Maybe</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="comments">Any final comments or suggestions? *</label>
+      <textarea id="comments" name="comments" rows="3" required></textarea>
+
+      <input type="submit" value="Submit Survey">
+    </form>
+    <div class="success-message" id="successMsg">Thank you! Your feedback has been submitted.</div>
+  </div>
+
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const form = e.target;
+      const formData = new FormData(form);
+  
+      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(text => {
+        console.log("Response:", text);
+        document.getElementById('successMsg').style.display = 'block';
+        form.reset();
+      })
+      .catch(err => {
+        console.error("Error submitting form:", err);
+        alert("Something went wrong!");
+      });
+    });
+  </script>
+  
