@@ -88,14 +88,6 @@
     .star-rating label:hover ~ label {
       color: gold;
     }
-
-    .success-message {
-      display: none;
-      color: #4caf50;
-      font-weight: bold;
-      margin-top: 20px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -182,36 +174,35 @@
 
       <input type="submit" value="Submit Survey">
     </form>
-    <div class="success-message" id="successMsg">Thank you! Your feedback has been submitted.</div>
   </div>
 
- <script>
-  // Redirect to landing page if user already submitted the form
-  if (sessionStorage.getItem("submitted") === "true") {
-    window.location.href = "index.html";
-  }
+  <script>
+    // Redirect if already submitted during this session
+    if (sessionStorage.getItem("submitted") === "true") {
+      window.location.href = "index.html";
+    }
 
-  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
+      const form = e.target;
+      const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(text => {
-      console.log("Response:", text);
-      sessionStorage.setItem("submitted", "true"); // Prevent re-submission
-      window.location.href = "thankyou.html";      // Redirect to thank you
-    })
-    .catch(err => {
-      console.error("Error submitting form:", err);
-      alert("Something went wrong!");
+      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(text => {
+        console.log("Response:", text);
+        sessionStorage.setItem("submitted", "true");
+        window.location.href = "thankyou.html";
+      })
+      .catch(err => {
+        console.error("Submission error:", err);
+        alert("Something went wrong. Please try again!");
+      });
     });
-  });
-</script>
-
-  
+  </script>
+</body>
+</html>
