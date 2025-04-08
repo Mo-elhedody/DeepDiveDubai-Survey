@@ -199,9 +199,8 @@
       .then(res => res.text())
       .then(text => {
         console.log("Response:", text);
-        document.getElementById('successMsg').style.display = 'block';
-        form.reset();
-      })
+        window.location.href = "thankyou.html"; // Redirect to thank-you page
+})
       .catch(err => {
         console.error("Error submitting form:", err);
         alert("Something went wrong!");
