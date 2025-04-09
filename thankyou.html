@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Cache-Control" content="no-store" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You!</title>
+  <title>Thank You - Deep Dive Dubai</title>
   <style>
     body {
       margin: 0;
@@ -15,14 +15,14 @@
       color: #ffffff;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       text-align: center;
     }
 
     .container {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.75);
       padding: 40px;
       border-radius: 15px;
       border: 2px solid #00bcd4;
@@ -37,25 +37,28 @@
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
-    .gif {
-      width: 200px;
-      height: auto;
+    img {
+      width: 180px;
+      margin-top: 15px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Thank You for Your Submission!</h1>
-    <p>Your certificate is being prepared and will be sent via email shortly.</p>
-    <img class="gif" src="https://cdn.dribbble.com/users/33562/screenshots/3591847/scuba_loader.gif" alt="Loading Scuba Certificate">
+    <h1>Thank You!</h1>
+    <p>Your feedback has been received.</p>
+    <p>Your certificate is being prepared and will be sent shortly.</p>
+    <img src="https://i.pinimg.com/originals/8a/50/82/8a50829c7a2bc6faeab7d7abcf7b3d7d.gif" alt="Diver Preparing Certificate">
   </div>
 
   <script>
-    // Redirect silently after 5 seconds
-    setTimeout(() => {
+    history.replaceState(null, "", location.href); // Prevent form resubmission
+
+    setTimeout(function() {
       window.location.href = "index.html";
     }, 5000);
   </script>
