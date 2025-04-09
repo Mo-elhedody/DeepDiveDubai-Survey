@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="5; url=index.html" />
+  <meta http-equiv="Cache-Control" content="no-store" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You</title>
+  <title>Thank You!</title>
   <style>
     body {
       margin: 0;
@@ -15,14 +15,14 @@
       color: #ffffff;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       text-align: center;
     }
 
-    .message-box {
-      background: rgba(0, 0, 0, 0.7);
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 40px;
       border-radius: 15px;
       border: 2px solid #00bcd4;
@@ -40,21 +40,24 @@
       margin-bottom: 30px;
     }
 
-    .loading-gif {
-      width: 180px;
+    .gif {
+      width: 200px;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <div class="message-box">
-    <h1>Thank You!</h1>
-    <p>Your response has been submitted.<br>Your certificate is being prepared and will be sent shortly.</p>
-    <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading" class="loading-gif">
+  <div class="container">
+    <h1>Thank You for Your Submission!</h1>
+    <p>Your certificate is being prepared and will be sent via email shortly.</p>
+    <img class="gif" src="https://cdn.dribbble.com/users/33562/screenshots/3591847/scuba_loader.gif" alt="Loading Scuba Certificate">
   </div>
 
   <script>
-    // Clear session storage so the form doesn't reappear after back/refresh
-    sessionStorage.clear();
+    // Redirect silently after 5 seconds
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 5000);
   </script>
 </body>
 </html>
