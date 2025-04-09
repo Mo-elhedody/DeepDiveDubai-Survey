@@ -1,96 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thank You!</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="5; url=index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: #ffffff;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
-      color: #fff;
       text-align: center;
     }
 
-    .thank-you-box {
-      background-color: rgba(0, 0, 0, 0.75);
+    .message-box {
+      background: rgba(0, 0, 0, 0.7);
       padding: 40px;
       border-radius: 15px;
       border: 2px solid #00bcd4;
       box-shadow: 0 0 15px #00bcd4;
-      max-width: 700px;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 15px;
+      font-size: 2.5rem;
       color: #00bcd4;
-    }
-
-    p {
-      font-size: 1.2em;
       margin-bottom: 20px;
     }
 
-    .tenor-gif-embed {
-      max-width: 400px;
-      margin: 0 auto;
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .loading-gif {
+      width: 180px;
     }
   </style>
 </head>
 <body>
-  <div class="thank-you-box">
+  <div class="message-box">
     <h1>Thank You!</h1>
-    <p>Your feedback has been submitted.<br>Your certificate will arrive shortly.</p>
-    
+    <p>Your response has been submitted.<br>Your certificate is being prepared and will be sent shortly.</p>
+    <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading" class="loading-gif">
   </div>
 
   <script>
-    // Prevent back navigation from returning to the filled form
-    history.pushState(null, '', location.href);
-    window.addEventListener('popstate', function () {
-      history.pushState(null, '', location.href);
-    });
-
-    // Disable form resubmission via refresh (clears submitted flag)
-    window.addEventListener('load', function () {
-      localStorage.removeItem("submitted");
-    });
-
-    // Redirect to landing page after 5 seconds
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 6000);
+    // Clear session storage so the form doesn't reappear after back/refresh
+    sessionStorage.clear();
   </script>
 </body>
-
-<script>
-  // Prevent back navigation from returning to the filled form
-  history.pushState(null, '', location.href);
-  window.addEventListener('popstate', function () {
-    history.pushState(null, '', location.href);
-  });
-
-  // Immediately redirect if the user refreshes the page
-  if (performance.navigation.type === 1) {
-    // 1 means the user refreshed the page
-    window.location.href = "index.html";
-  }
-
-  // Automatically redirect to landing page after 5 seconds
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 6000);
-</script>
-
 </html>
