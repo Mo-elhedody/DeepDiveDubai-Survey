@@ -177,30 +177,28 @@
   </div>
 
   <script>
-    // Prevent returning to filled form via back/refresh
-    if (performance.navigation.type === 2 || sessionStorage.getItem("submitted") === "true") {
-      location.replace("index.html"); // redirect to landing page
-    }
+  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
-        method: "POST",
-        body: formData
-      })
+    fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+      method: "POST",
+      body: formData
+    })
       .then(res => res.text())
       .then(text => {
-        sessionStorage.setItem("submitted", "true");
-        window.location.href = "thankyou.html";
+        console.log("Response:", text);
+        // Replace history so back button doesn't return to form
+        window.location.replace("thankyou.html");
       })
       .catch(err => {
-        alert("Something went wrong.");
-        console.error(err);
+        console.error("Submission error:", err);
+        alert("Something went wrong!");
       });
-    });
-  </script>
+  });
+</script>
+
 </body>
 </html>
