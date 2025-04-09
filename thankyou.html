@@ -9,43 +9,31 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Segoe UI', sans-serif;
-      color: #ffffff;
+      background: #000;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      text-align: center;
     }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 40px;
-      border-radius: 15px;
-      border: 2px solid #00bcd4;
-      box-shadow: 0 0 15px #00bcd4;
-    }
-
-    .thank-image {
-      max-width: 100%;
-      height: auto;
+    img {
+      width: 50%;
+      max-width: 600px;
       border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img class="thank-image" src="thankyou.png" alt="Thank You Message">
-  </div>
+
+  <!-- Replace the src below with your GitHub raw image URL -->
+  <img src="https://raw.githubusercontent.com/your-username/your-repo/main/thankyou.png" alt="Thank You Image">
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent back/form resubmission
+    history.replaceState(null, "", location.href); // Prevent resubmit
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 5000);
+    }, 10000); // Auto-redirect after 5 sec
   </script>
+
 </body>
 </html>
