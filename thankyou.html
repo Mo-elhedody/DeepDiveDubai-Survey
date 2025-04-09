@@ -31,7 +31,7 @@
       height: auto;
       display: block;
       border-radius: 15px;
-      opacity: 0.8; /* 80% visibility */
+      opacity: 0.8;
     }
 
     .wrapper {
@@ -55,10 +55,18 @@
   </div>
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent resubmit
-    setTimeout(function() {
+    // Check if form was submitted
+    if (!sessionStorage.getItem("submitted")) {
       window.location.href = "index.html";
-    }, 20000); // Redirect after 20 sec
+    }
+
+    // Clear it to prevent refresh staying here
+    sessionStorage.removeItem("submitted");
+
+    // Optional: Auto redirect after 20 seconds
+    setTimeout(function () {
+      window.location.href = "index.html";
+    }, 20000);
   </script>
 
 </body>
