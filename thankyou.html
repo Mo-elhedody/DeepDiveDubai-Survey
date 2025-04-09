@@ -9,30 +9,42 @@
     body {
       margin: 0;
       padding: 0;
-      background: #000;
+      background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
+    .image-wrapper {
+      background-color: rgba(0, 0, 0, 0.75);
+      border: 2px solid #00bcd4;
+      box-shadow: 0 0 15px #00bcd4;
+      border-radius: 15px;
+      padding: 20px;
+    }
+
     img {
       width: 50%;
       max-width: 600px;
-      border-radius: 12px;
+      border-radius: 10px;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Replace the src below with your GitHub raw image URL -->
-  <img src="thankyou.png" alt="Thank You Image">
+  <div class="image-wrapper">
+    <img src="thankyou.png" alt="Thank You Image">
+  </div>
 
   <script>
     history.replaceState(null, "", location.href); // Prevent resubmit
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 10000); // Auto-redirect after 5 sec
+    }, 5000); // Auto-redirect after 5 seconds
   </script>
 
 </body>
