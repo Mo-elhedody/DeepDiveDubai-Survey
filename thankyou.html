@@ -31,7 +31,7 @@
       height: auto;
       display: block;
       border-radius: 15px;
-      opacity: 0.8; /* 80% visibility */
+      opacity: 0.8;
     }
 
     .wrapper {
@@ -55,15 +55,15 @@
   </div>
 
   <script>
-    // If the user refreshed or opened thankyou.html directly, go back to landing page
-    if (performance.navigation.type === 1 || sessionStorage.getItem("submitted") !== "true") {
+    // Redirect if user landed here directly or refreshed
+    if (!sessionStorage.getItem("submitted")) {
       window.location.href = "index.html";
     }
 
-    // Clear flag to prevent staying here on refresh again
+    // Clear it AFTER we check it
     sessionStorage.removeItem("submitted");
 
-    // After 20 seconds, return to landing page
+    // Optional: auto-redirect to landing page after 20 sec
     setTimeout(function() {
       window.location.href = "index.html";
     }, 20000);
