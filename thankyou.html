@@ -55,10 +55,18 @@
   </div>
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent resubmit
+    // If the user refreshed or opened thankyou.html directly, go back to landing page
+    if (performance.navigation.type === 1 || sessionStorage.getItem("submitted") !== "true") {
+      window.location.href = "index.html";
+    }
+
+    // Clear flag to prevent staying here on refresh again
+    sessionStorage.removeItem("submitted");
+
+    // After 20 seconds, return to landing page
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 20000); // Redirect after 20 sec
+    }, 20000);
   </script>
 
 </body>
