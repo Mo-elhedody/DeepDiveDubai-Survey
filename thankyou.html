@@ -18,41 +18,39 @@
       align-items: center;
     }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.35); /* subtle black overlay */
-      padding: 20px;
-      border-radius: 20px;
+    .image-container {
       border: 2px solid #00bcd4;
       box-shadow: 0 0 15px #00bcd4;
+      border-radius: 15px;
+      display: inline-block;
     }
 
-    .image-wrapper img {
+    .image-container img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 15px;
     }
 
-    .image-wrapper {
-      width: 100%;
-      max-width: 800px;
+    .wrapper {
+      width: 50%;
+      max-width: 600px;
     }
   </style>
 </head>
 <body>
 
-  <div class="overlay">
-    <div class="image-wrapper">
+  <div class="wrapper">
+    <div class="image-container">
       <img src="thankyou.png" alt="Thank You Image">
     </div>
   </div>
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent back/refresh resubmit
-
+    history.replaceState(null, "", location.href); // Prevent resubmit on back/refresh
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 20000); // Redirect after 20 seconds
+    }, 20000); // Redirect after 20 sec
   </script>
 
 </body>
