@@ -177,6 +177,11 @@
   </div>
 
   <script>
+  // Prevent access to the form if already submitted in this session
+  if (sessionStorage.getItem("submitted") === "true") {
+    window.location.replace("index.html"); // go back to landing page
+  }
+
   document.getElementById('feedbackForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -187,18 +192,19 @@
       method: "POST",
       body: formData
     })
-      .then(res => res.text())
-      .then(text => {
-        console.log("Response:", text);
-        // Replace history so back button doesn't return to form
-        window.location.replace("thankyou.html");
-      })
-      .catch(err => {
-        console.error("Submission error:", err);
-        alert("Something went wrong!");
-      });
+    .then(res => res.text())
+    .then(text => {
+      console.log("Response:", text);
+      sessionStorage.setItem("submitted", "true"); // ✅ Prevent going back to this form
+      window.location.replace("thankyou.html");    // ✅ Redirect
+    })
+    .catch(err => {
+      console.error("Submission error:", err);
+      alert("Something went wrong!");
+    });
   });
 </script>
+
 
 </body>
 </html>
