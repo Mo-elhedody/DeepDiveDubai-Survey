@@ -29,35 +29,20 @@
       box-shadow: 0 0 15px #00bcd4;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #00bcd4;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    img {
-      width: 180px;
-      margin-top: 15px;
-      border-radius: 10px;
+    .thank-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Thank You!</h1>
-    <p>Your feedback has been received.</p>
-    <p>Your certificate is being prepared and will be sent within 5 min.</p>
-<img src="https://media2.giphy.com/media/H0zBB3VayU98FHK6LW/giphy.gif" alt="Diver Animation">
+    <img class="thank-image" src="https://drive.google.com/uc?export=view&id=1FwgPWse0xOiQs5FEIOhneKOKdQRvAUAt" alt="Thank You Message">
   </div>
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent form resubmission
-
+    history.replaceState(null, "", location.href); // Prevent back/form resubmission
     setTimeout(function() {
       window.location.href = "index.html";
     }, 5000);
