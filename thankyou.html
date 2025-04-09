@@ -31,7 +31,7 @@
       height: auto;
       display: block;
       border-radius: 15px;
-      opacity: 0.8;
+      opacity: 0.8; /* 80% visibility */
     }
 
     .wrapper {
@@ -55,18 +55,10 @@
   </div>
 
   <script>
-    // Redirect if user landed here directly or refreshed
-    if (!sessionStorage.getItem("submitted")) {
-      window.location.href = "index.html";
-    }
-
-    // Clear it AFTER we check it
-    sessionStorage.removeItem("submitted");
-
-    // Optional: auto-redirect to landing page after 20 sec
+    history.replaceState(null, "", location.href); // Prevent resubmit
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 20000);
+    }, 20000); // Redirect after 20 sec
   </script>
 
 </body>
