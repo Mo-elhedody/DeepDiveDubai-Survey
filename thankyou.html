@@ -12,38 +12,47 @@
       background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
 
-    .image-wrapper {
-      display: inline-block;
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.35); /* subtle black overlay */
+      padding: 20px;
+      border-radius: 20px;
       border: 2px solid #00bcd4;
       box-shadow: 0 0 15px #00bcd4;
-      border-radius: 15px;
     }
 
     .image-wrapper img {
       width: 100%;
       height: auto;
-      border-radius: 15px;
       display: block;
+      border-radius: 15px;
+    }
+
+    .image-wrapper {
+      width: 50%;
+      max-width: 600px;
     }
   </style>
 </head>
 <body>
 
-  <div class="image-wrapper" style="width: 50%;">
-    <img src="thankyou.png" alt="Thank You Image">
+  <div class="overlay">
+    <div class="image-wrapper">
+      <img src="thankyou.png" alt="Thank You Image">
+    </div>
   </div>
 
   <script>
-    history.replaceState(null, "", location.href); // Prevent resubmit
+    history.replaceState(null, "", location.href); // Prevent back/refresh resubmit
+
     setTimeout(function() {
       window.location.href = "index.html";
-    }, 20000); // Auto-redirect after 5 sec
+    }, 20000); // Redirect after 20 seconds
   </script>
 
 </body>
