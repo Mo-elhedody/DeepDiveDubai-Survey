@@ -88,6 +88,14 @@
     .star-rating label:hover ~ label {
       color: gold;
     }
+
+    .error-message {
+      display: none;
+      color: #ff4444;
+      font-weight: bold;
+      margin-top: 15px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -106,7 +114,7 @@
       <label for="email">Email Address *</label>
       <input type="email" name="email" id="email" required>
 
-      <label>Overall, how would you rate your diving experience? *</label>
+      <label>Overall Experience *</label>
       <div class="star-rating">
         <input type="radio" name="experience_rating" value="5" id="er5" required><label for="er5">★</label>
         <input type="radio" name="experience_rating" value="4" id="er4"><label for="er4">★</label>
@@ -115,8 +123,53 @@
         <input type="radio" name="experience_rating" value="1" id="er1"><label for="er1">★</label>
       </div>
 
-      <label for="instructor">Who was your dive instructor? *</label>
-      <select name="instructor" id="instructor" required>
+      <label>Instructor Rating *</label>
+      <div class="star-rating">
+        <input type="radio" name="instructor_rating" value="5" id="ir5" required><label for="ir5">★</label>
+        <input type="radio" name="instructor_rating" value="4" id="ir4"><label for="ir4">★</label>
+        <input type="radio" name="instructor_rating" value="3" id="ir3"><label for="ir3">★</label>
+        <input type="radio" name="instructor_rating" value="2" id="ir2"><label for="ir2">★</label>
+        <input type="radio" name="instructor_rating" value="1" id="ir1"><label for="ir1">★</label>
+      </div>
+
+      <label>Reception *</label>
+      <div class="star-rating">
+        <input type="radio" name="reception_rating" value="5" id="rr5" required><label for="rr5">★</label>
+        <input type="radio" name="reception_rating" value="4" id="rr4"><label for="rr4">★</label>
+        <input type="radio" name="reception_rating" value="3" id="rr3"><label for="rr3">★</label>
+        <input type="radio" name="reception_rating" value="2" id="rr2"><label for="rr2">★</label>
+        <input type="radio" name="reception_rating" value="1" id="rr1"><label for="rr1">★</label>
+      </div>
+
+      <label>Facility *</label>
+      <div class="star-rating">
+        <input type="radio" name="facility_rating" value="5" id="fr5" required><label for="fr5">★</label>
+        <input type="radio" name="facility_rating" value="4" id="fr4"><label for="fr4">★</label>
+        <input type="radio" name="facility_rating" value="3" id="fr3"><label for="fr3">★</label>
+        <input type="radio" name="facility_rating" value="2" id="fr2"><label for="fr2">★</label>
+        <input type="radio" name="facility_rating" value="1" id="fr1"><label for="fr1">★</label>
+      </div>
+
+      <label>Equipment *</label>
+      <div class="star-rating">
+        <input type="radio" name="equipment_rating" value="5" id="eq5" required><label for="eq5">★</label>
+        <input type="radio" name="equipment_rating" value="4" id="eq4"><label for="eq4">★</label>
+        <input type="radio" name="equipment_rating" value="3" id="eq3"><label for="eq3">★</label>
+        <input type="radio" name="equipment_rating" value="2" id="eq2"><label for="eq2">★</label>
+        <input type="radio" name="equipment_rating" value="1" id="eq1"><label for="eq1">★</label>
+      </div>
+
+      <label>Friendliness *</label>
+      <div class="star-rating">
+        <input type="radio" name="friendliness_rating" value="5" id="frd5" required><label for="frd5">★</label>
+        <input type="radio" name="friendliness_rating" value="4" id="frd4"><label for="frd4">★</label>
+        <input type="radio" name="friendliness_rating" value="3" id="frd3"><label for="frd3">★</label>
+        <input type="radio" name="friendliness_rating" value="2" id="frd2"><label for="frd2">★</label>
+        <input type="radio" name="friendliness_rating" value="1" id="frd1"><label for="frd1">★</label>
+      </div>
+
+      <label for="instructor">Instructor Name (Optional)</label>
+      <select name="instructor" id="instructor">
         <option value="">-- Select Instructor --</option>
         <option>ANASTASIA</option>
         <option>SERGEI</option>
@@ -143,68 +196,41 @@
         <option>RICHARD</option>
       </select>
 
-      <label>How would you rate your instructor? *</label>
-      <div class="star-rating">
-        <input type="radio" name="instructor_rating" value="5" id="ir5" required><label for="ir5">★</label>
-        <input type="radio" name="instructor_rating" value="4" id="ir4"><label for="ir4">★</label>
-        <input type="radio" name="instructor_rating" value="3" id="ir3"><label for="ir3">★</label>
-        <input type="radio" name="instructor_rating" value="2" id="ir2"><label for="ir2">★</label>
-        <input type="radio" name="instructor_rating" value="1" id="ir1"><label for="ir1">★</label>
-      </div>
-
-      <label for="highlight">What did you like the most about your dive? *</label>
-      <textarea id="highlight" name="highlight" rows="3" required></textarea>
-
-      <label for="dislike">Was there anything you didn’t like? *</label>
-      <textarea id="dislike" name="dislike" rows="3" required></textarea>
-
-      <label for="hall_experience">How was your experience in the hall/facility? *</label>
-      <textarea id="hall_experience" name="hall_experience" rows="3" required></textarea>
-
-      <label for="recommend">Would you recommend Deep Dive Dubai to others? *</label>
-      <select id="recommend" name="recommend" required>
-        <option value="">-- Select --</option>
-        <option value="Definitely">Definitely</option>
-        <option value="Maybe">Maybe</option>
-        <option value="No">No</option>
-      </select>
-
-      <label for="comments">Any final comments or suggestions? *</label>
-      <textarea id="comments" name="comments" rows="3" required></textarea>
+      <label for="comments">Any comments or suggestions? (Optional)</label>
+      <textarea id="comments" name="comments" rows="3"></textarea>
 
       <input type="submit" value="Submit Survey">
+      <div class="error-message" id="errorMsg">Please make sure all required fields are filled correctly.</div>
     </form>
   </div>
 
   <script>
-  // Prevent access to the form if already submitted in this session
-  if (sessionStorage.getItem("submitted") === "true") {
-    window.location.replace("index.html"); // go back to landing page
-  }
+    if (sessionStorage.getItem("submitted") === "true") {
+      window.location.replace("index.html");
+    }
 
-  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const errorMsg = document.getElementById('errorMsg');
+      errorMsg.style.display = "none";
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(text => {
-      console.log("Response:", text);
-      sessionStorage.setItem("submitted", "true"); // ✅ Prevent going back to this form
-      window.location.replace("thankyou.html");    // ✅ Redirect
-    })
-    .catch(err => {
-      console.error("Submission error:", err);
-      alert("Something went wrong!");
+      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.text())
+      .then(text => {
+        sessionStorage.setItem("submitted", "true");
+        window.location.replace("thankyou.html");
+      })
+      .catch(err => {
+        console.error("Submission error:", err);
+        errorMsg.style.display = "block";
+      });
     });
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
