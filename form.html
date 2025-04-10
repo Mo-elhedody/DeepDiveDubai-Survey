@@ -205,56 +205,87 @@
   </div>
 
   <script>
-    if (sessionStorage.getItem("submitted") === "true") {
-      window.location.replace("index.html");
-    }
+  if (sessionStorage.getItem("submitted") === "true") {
+    window.location.replace("index.html");
+  }
 
-    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const form = e.target;
-      const formData = new FormData(form);
-      const warning = document.getElementById("formWarning");
-      warning.style.display = "none";
+    const form = e.target;
+    const formData = new FormData(form);
+    const warning = document.getElementById("formWarning");
+    warning.style.display = "none";
 
-      let valid = true;
-      form.querySelectorAll("[required]").forEach(input => {
-        if (input.type === "radio") {
-          const name = input.name;
-          const checked = form.querySelector(`input[name="${name}"]:checked`);
-          if (!checked) valid = false;
+    let valid = true;
+
+    // Clear previous error styles
+    form.querySelectorAll("input, select, textarea").forEach(el => {
+      el.style.border = "none";
+    });
+
+    form.querySelectorAll("[required]").forEach(input => {
+      let hasError = false;
+
+      if (input.type === "radio") {
+        const name = input.name;
+        const checked = form.querySelector(`input[name="${name}"]:checked`);
+        if (!checked) {
+          hasError = true;
+          form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
+            label.style.border = "2px solid red";
+            label.style.borderRadius = "5px";
+          });
         } else {
-          if (!input.value.trim()) valid = false;
+          form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
+            label.style.border = "none";
+          });
         }
-      });
-
-      // Email format check
-      const emailInput = document.getElementById("email");
-      const emailValue = emailInput.value.trim();
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailValue)) valid = false;
-
-      if (!valid) {
-        warning.textContent = "⚠️ Please fill in all required fields with a valid email address.";
-        warning.style.display = "block";
-        return;
+      } else {
+        if (!input.value.trim()) {
+          hasError = true;
+          input.style.border = "2px solid red";
+        } else {
+          input.style.border = "none";
+        }
       }
 
-      fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(text => {
-        console.log("Response:", text);
-        sessionStorage.setItem("submitted", "true");
-        window.location.replace("thankyou.html");
-      })
-      .catch(err => {
-        console.error("Submission error:", err);
-        alert("Something went wrong!");
-      });
+      if (hasError) valid = false;
     });
-  </script>
+
+    // Email format check
+    const emailInput = document.getElementById("email");
+    const emailValue = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailValue)) {
+      emailInput.style.border = "2px solid red";
+      valid = false;
+    } else {
+      emailInput.style.border = "none";
+    }
+
+    if (!valid) {
+      warning.textContent = "⚠️ Please fill in all required fields with a valid email address.";
+      warning.style.display = "block";
+      return;
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycby4iOX2yvZ-Ctxalm49nRJarJK0xBG66IwF2xyz8FGsSB-7p8mzAHUxrv7mYVAhrj8/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.text())
+    .then(text => {
+      console.log("Response:", text);
+      sessionStorage.setItem("submitted", "true");
+      window.location.replace("thankyou.html");
+    })
+    .catch(err => {
+      console.error("Submission error:", err);
+      alert("Something went wrong!");
+    });
+  });
+</script>
+
 </body>
 </html>
