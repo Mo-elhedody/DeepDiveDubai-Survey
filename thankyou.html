@@ -79,42 +79,40 @@
   </div>
 
   <script>
-    const review = sessionStorage.getItem("reviewText");
-    if (!sessionStorage.getItem("submitted")) {
+  const review = sessionStorage.getItem("reviewText");
+  if (!sessionStorage.getItem("submitted")) {
+    window.location.href = "index.html";
+  }
+
+  if (review) {
+    document.getElementById("generatedReview").textContent = review;
+    document.getElementById("reviewSection").style.display = "block";
+  }
+
+  function copyReviewAndGo() {
+    const text = document.getElementById("generatedReview").textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      window.open("https://search.google.com/local/writereview?placeid=ChIJVTTIyb9pXz4RwhcoNMXJGZQ", "_blank");
+    });
+  }
+
+  function skipReview() {
+    document.querySelector(".thank-you-box").innerHTML = "<h2>Thanks again for diving with us!</h2><p>We hope to see you again soon 🌊</p>";
+
+    // Prevent going back to filled form
+    history.replaceState(null, "", "index.html");
+    window.onpopstate = function () {
+      location.href = "index.html";
+    };
+
+    // Auto redirect after 20 seconds
+    setTimeout(() => {
       window.location.href = "index.html";
-    }
+    }, 20000);
+  }
 
-    if (review) {
-      document.getElementById("generatedReview").textContent = review;
-      document.getElementById("reviewSection").style.display = "block";
-    }
-
-    function copyReviewAndGo() {
-  const text = document.getElementById("generatedReview").textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    window.open("https://search.google.com/local/writereview?placeid=ChIJVTTIyb9pXz4RwhcoNMXJGZQ", "_blank");
-  });
-}
-    }
-
-    function skipReview() {
-      document.querySelector(".thank-you-box").innerHTML = "<h2>Thanks again for diving with us!</h2><p>We hope to see you again soon 🌊</p>";
-
-      // Prevent going back to filled form
-      history.replaceState(null, "", "index.html");
-      window.onpopstate = function () {
-        location.href = "index.html";
-      };
-
-      // Auto redirect after 20 seconds
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 20000);
-    }
-
-    sessionStorage.removeItem("submitted");
-    sessionStorage.removeItem("customReview");
-  </script>
-
+  sessionStorage.removeItem("submitted");
+  sessionStorage.removeItem("customReview");
+</script>
 </body>
 </html>
