@@ -90,10 +90,11 @@
     }
 
     function copyReviewAndGo() {
-      const text = document.getElementById("generatedReview").textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        window.open("https://www.google.com/maps/place/Deep+Dive+Dubai/@25.1277036,55.292667,16.96z/data=!4m8!3m7!1s0x3e5f69bfc9c83455:0x9419c9c5342817c2!8m2!3d25.1276802!4d55.2951267!9m1!1b1!16s%2Fg%2F11qplynl3c?entry=ttu", "_blank");
-      });
+  const text = document.getElementById("generatedReview").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    window.open("https://search.google.com/local/writereview?placeid=ChIJVTTIyb9pXz4RwhcoNMXJGZQ", "_blank");
+  });
+}
     }
 
     function skipReview() {
