@@ -12,45 +12,89 @@
       background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
-      height: 100vh;
+      color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
-    .image-container {
+    .container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 15px;
       border: 2px solid #00bcd4;
       box-shadow: 0 0 15px #00bcd4;
-      border-radius: 15px;
-      display: inline-block;
-      overflow: hidden;
-    }
-
-    .image-container img {
+      max-width: 800px;
       width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 15px;
-      opacity: 0.8;
     }
 
-    .wrapper {
-      width: 50%;
-      max-width: 600px;
+    h1 {
+      text-align: center;
+      color: #00bcd4;
+      margin-bottom: 20px;
+    }
+
+    .confirmation {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .review-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00bcd4;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .buttons button {
+      background-color: #00bcd4;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #008c9e;
     }
 
     @media (max-width: 768px) {
-      .wrapper {
-        width: 90%;
+      .container {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="wrapper">
-    <div class="image-container">
-      <img src="thankyou.png" alt="Thank You Image">
+  <div class="container">
+    <h1>Thank You for Your Feedback!</h1>
+    <p class="confirmation">
+      We’ve received your feedback and sent your memory certificate and exclusive voucher to your email.
+    </p>
+
+    <h2 style="text-align: center;">Here’s your auto-generated Google review:</h2>
+    <div id="generatedReview" class="review-box">Generating review...</div>
+
+    <div class="buttons">
+      <button onclick="copyReviewAndRedirect()">Copy and Post to Google</button>
+      <button onclick="hideReview()">No Thanks</button>
     </div>
   </div>
 
@@ -60,13 +104,25 @@
       window.location.href = "index.html";
     }
 
-    // Clear it to prevent refresh staying here
-    sessionStorage.removeItem("submitted");
+    // Display stored review
+    const reviewText = sessionStorage.getItem("customReview") || "Thank you for diving with us!";
+    document.getElementById("generatedReview").innerText = reviewText;
 
-    // Optional: Auto redirect after 20 seconds
-    setTimeout(function () {
-      window.location.href = "index.html";
-    }, 20000);
+    function copyReviewAndRedirect() {
+      navigator.clipboard.writeText(reviewText).then(() => {
+        window.location.href = "https://g.page/r/CZ2zSpgcZME7EB0/review";
+      });
+    }
+
+    function hideReview() {
+      document.getElementById("generatedReview").style.display = "none";
+      document.querySelector("h2").style.display = "none";
+      document.querySelector(".buttons").style.display = "none";
+      document.querySelector(".confirmation").innerText = "Thank you for your feedback. You're all set!";
+    }
+
+    // Clear session key after load so refresh doesn’t re-trigger
+    sessionStorage.removeItem("submitted");
   </script>
 
 </body>
