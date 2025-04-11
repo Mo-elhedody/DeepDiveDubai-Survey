@@ -90,27 +90,25 @@
     }
 
     function copyReviewAndGo() {
-  const text = document.getElementById("generatedReview").textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    window.open("https://www.google.com/maps/place/Deep+Dive+Dubai/@25.1277036,55.292667,16.96z/data=!4m8!3m7!1s0x3e5f69bfc9c83455:0x9419c9c5342817c2!8m2!3d25.1276802!4d55.2951267!9m1!1b1!16s%2Fg%2F11qplynl3c?entry=ttu&g_ep=EgoyMDI1MDQwOC4wIKXMDSoASAFQAw%3D%3D", "_blank");
-  });
-}
-
-
+      const text = document.getElementById("generatedReview").textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        window.open("https://www.google.com/maps/place/Deep+Dive+Dubai/@25.1277036,55.292667,16.96z/data=!4m8!3m7!1s0x3e5f69bfc9c83455:0x9419c9c5342817c2!8m2!3d25.1276802!4d55.2951267!9m1!1b1!16s%2Fg%2F11qplynl3c?entry=ttu", "_blank");
+      });
+    }
 
     function skipReview() {
       document.querySelector(".thank-you-box").innerHTML = "<h2>Thanks again for diving with us!</h2><p>We hope to see you again soon 🌊</p>";
-      // Auto redirect after 20 seconds
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 20000);
 
-    // Prevent going back to filled form
-    history.replaceState(null, "", "index.html");
-    window.onpopstate = function () {
-      location.href = "index.html";
-    };
-  }
+      // Prevent going back to filled form
+      history.replaceState(null, "", "index.html");
+      window.onpopstate = function () {
+        location.href = "index.html";
+      };
+
+      // Auto redirect after 20 seconds
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 20000);
     }
 
     sessionStorage.removeItem("submitted");
