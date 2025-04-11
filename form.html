@@ -269,6 +269,80 @@
       warning.style.display = "block";
       return;
     }
+// Generate custom review string
+const reviewParts = [];
+
+const instructorName = form.instructor.value;
+const instructorRating = form.querySelector('input[name="instructor_rating"]:checked')?.value;
+const receptionRating = form.querySelector('input[name="reception_rating"]:checked')?.value;
+const facilityRating = form.querySelector('input[name="facility_rating"]:checked')?.value;
+const equipmentRating = form.querySelector('input[name="equipment_rating"]:checked')?.value;
+const friendlinessRating = form.querySelector('input[name="friendliness_rating"]:checked')?.value;
+const overallRating = form.querySelector('input[name="experience_rating"]:checked')?.value;
+const comments = form.comments.value?.trim();
+
+if (instructorRating && instructorName) {
+  const text = {
+    5: `My instructor ${instructorName} was very friendly and I felt completely safe underwater.`,
+    4: `${instructorName} was professional and helpful throughout the dive.`,
+    3: `Instructor ${instructorName} provided a good experience.`,
+    2: `The dive instructor ${instructorName} was okay, but could improve.`,
+    1: `I didn't have the best experience with my instructor.`
+  };
+  reviewParts.push(text[instructorRating]);
+}
+
+if (receptionRating) {
+  const text = {
+    5: "The reception was smooth and the team very welcoming.",
+    4: "Reception was great and everything was organized.",
+    3: "Reception was okay, but could be better.",
+    2: "Reception experience was a bit slow.",
+    1: "Reception experience wasn’t good."
+  };
+  reviewParts.push(text[receptionRating]);
+}
+
+if (facilityRating) {
+  const text = {
+    5: "The facility is outstanding and incredibly clean.",
+    4: "The facility is great and well-maintained.",
+    3: "Facility was decent.",
+    2: "Facility needs improvement.",
+    1: "Facility was disappointing."
+  };
+  reviewParts.push(text[facilityRating]);
+}
+
+if (equipmentRating) {
+  const text = {
+    5: "The diving equipment was top-notch and in excellent condition.",
+    4: "The gear was very good and reliable.",
+    3: "The equipment was okay.",
+    2: "Some of the equipment could be better.",
+    1: "The equipment was not satisfactory."
+  };
+  reviewParts.push(text[equipmentRating]);
+}
+
+if (friendlinessRating) {
+  const text = {
+    5: "The staff were extremely friendly and helpful.",
+    4: "The staff were helpful and welcoming.",
+    3: "Staff were okay.",
+    2: "Friendliness of staff could improve.",
+    1: "Staff did not seem very friendly."
+  };
+  reviewParts.push(text[friendlinessRating]);
+}
+
+if (comments) {
+  reviewParts.push(`Additional comment: ${comments}`);
+}
+
+// Save the review string in sessionStorage
+const customReview = `🌟🌟🌟🌟🌟\n${reviewParts.join(" ")}`;
+sessionStorage.setItem("reviewText", customReview);
 
     fetch("https://script.google.com/macros/s/AKfycbz0Lw07JhSNVRqtIO0G5c18DReUVmjvE26MnVb_gctLcOKXPZsms0tf_lG6HX6pFXrN0g/exec", {
       method: "POST",
