@@ -90,11 +90,12 @@
     }
 
     function copyReviewAndGo() {
-      const text = document.getElementById("generatedReview").textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        window.location.href = "https://g.page/r/CYf32N6i9AmvEBM/review";
-      });
-    }
+  const text = document.getElementById("generatedReview").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    window.open("https://search.google.com/local/writereview?placeid=ChIJSSbJp-ZuXz4RnE6rM_PJfoc", "_blank");
+  });
+}
+
 
     function skipReview() {
       document.querySelector(".thank-you-box").innerHTML = "<h2>Thanks again for diving with us!</h2><p>We hope to see you again soon 🌊</p>";
