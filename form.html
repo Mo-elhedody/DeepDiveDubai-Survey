@@ -169,7 +169,7 @@
         <input type="radio" name="reception_rating" value="1" id="rr1"><label for="rr1">★</label>
       </div>
 
-      <label>How likely are you to recommend Deep Dive Dubai to Friends and Family? *</label>
+      <label>How strongly would you recommend Deep Dive Dubai to Friends and Family? *</label>
       <div class="star-rating">
         <input type="radio" name="facility_rating" value="5" id="fr5" required><label for="fr5">★</label>
         <input type="radio" name="facility_rating" value="4" id="fr4"><label for="fr4">★</label>
@@ -187,7 +187,7 @@
         <input type="radio" name="equipment_rating" value="1" id="eq1"><label for="eq1">★</label>
       </div>
 
-      <label>How friendly and helpful was the staff? *</label>
+      <label>How safe did you feel during the dive? *</label>
       <div class="star-rating">
         <input type="radio" name="friendliness_rating" value="5" id="fd5" required><label for="fd5">★</label>
         <input type="radio" name="friendliness_rating" value="4" id="fd4"><label for="fd4">★</label>
@@ -327,11 +327,11 @@ if (equipmentRating) {
 
 if (friendlinessRating) {
   const text = {
-    5: "The staff were extremely friendly and helpful.",
-    4: "The staff were helpful and welcoming.",
-    3: "Staff were okay.",
-    2: "Friendliness of staff could improve.",
-    1: "Staff did not seem very friendly."
+5: " I felt extremely safe and well looked after throughout the dive."
+4: " I felt safe and comfortable during the dive."
+3: " I felt mostly safe, but there were some small concerns."
+2: " I didn’t feel fully safe during parts of the dive."
+1: " I felt unsafe and concerned during the dive."
   };
   reviewParts.push(text[friendlinessRating]);
 }
