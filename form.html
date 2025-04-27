@@ -1,216 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Deep Dive Dubai Form</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('https://alertdiver.eu/wp-content/uploads/2023/07/deep-dive-dubai-bannerweb-2560x1120-1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Segoe UI', sans-serif;
-      color: #ffffff;
-    }
-
-    .form-container {
-      max-width: 850px;
-      margin: 40px auto;
-      background: rgba(67, 65, 65, 0.85);
-      padding: 40px 30px;
-      border-radius: 15px;
-      border: 2px solid #00bcd4;
-      box-shadow: 0 0 15px #00bcd4;
-      position: relative;
-    }
-
-    .form-logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      height: 60px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #00bcd4;
-      margin-bottom: 30px;
-      padding-top: 20px;
-    }
-
-    label {
-      display: block;
-      margin: 15px 0 5px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    input[type="submit"] {
-      background-color: #00bcd4;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 20px;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #008c9e;
-    }
-
-    .star-rating {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      margin-top: 5px;
-    }
-
-    .star-rating input {
-      display: none;
-    }
-
-    .star-rating label {
-      font-size: 2em;
-      color: #ccc;
-      cursor: pointer;
-    }
-
-    .star-rating input:checked ~ label,
-    .star-rating label:hover,
-    .star-rating label:hover ~ label {
-      color: gold;
-    }
-
-    #formWarning {
-      display: none;
-      color: #ff6666;
-      font-weight: bold;
-      margin-top: 15px;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="form-container">
-    <img src="https://storage.googleapis.com/freedivinguae.com/2022/03/59a19db5-ddd_englishlogo.png" alt="Logo" class="form-logo">
-
-    <h1></h1>
-    <form id="feedbackForm" novalidate>
-      <label for="name">First Name *</label>
-      <input type="text" name="name" id="name" required>
-
-      <label for="surname">Surname *</label>
-      <input type="text" name="surname" id="surname" required>
-
-      <label for="email">Email Address *</label>
-      <input type="email" name="email" id="email" required>
-
-      <label>Overall, how would you rate your diving experience? *</label>
-      <div class="star-rating">
-        <input type="radio" name="experience_rating" value="5" id="er5" required><label for="er5">★</label>
-        <input type="radio" name="experience_rating" value="4" id="er4"><label for="er4">★</label>
-        <input type="radio" name="experience_rating" value="3" id="er3"><label for="er3">★</label>
-        <input type="radio" name="experience_rating" value="2" id="er2"><label for="er2">★</label>
-        <input type="radio" name="experience_rating" value="1" id="er1"><label for="er1">★</label>
-      </div>
-
-      <label for="instructor">Who was your dive instructor? (optional)</label>
-      <select name="instructor" id="instructor">
-        <option value="">-- Select Instructor --</option>
-       <option>Dario</option>
-  <option>Sergei</option>
-  <option>Anastasia</option>
-  <option>Andy</option>
-  <option>Lier</option>
-  <option>Mustafa</option>
-  <option>Hanni</option>
-  <option>Abdo</option>
-  <option>Charlie</option>
-  <option>Ericson</option>
-  <option>Tito</option>
-  <option>Imantha</option>
-  <option>Evangeline</option>
-  <option>Imane</option>
-  <option>Riccardo</option>
-  <option>Mohab</option>
-  <option>Haridi</option>
-  <option>Ernest</option>
-  <option>Yehya</option>
-  <option>Jesper</option>
-  <option>Dimitris</option>
-  <option>Jarrod</option>
-  <option>Richard</option>
-      </select>
-
-      <label>How would you rate your instructor? *</label>
-      <div class="star-rating">
-        <input type="radio" name="instructor_rating" value="5" id="ir5" required><label for="ir5">★</label>
-        <input type="radio" name="instructor_rating" value="4" id="ir4"><label for="ir4">★</label>
-        <input type="radio" name="instructor_rating" value="3" id="ir3"><label for="ir3">★</label>
-        <input type="radio" name="instructor_rating" value="2" id="ir2"><label for="ir2">★</label>
-        <input type="radio" name="instructor_rating" value="1" id="ir1"><label for="ir1">★</label>
-      </div>
-
-      <label>How would you rate the customer service? *</label>
-      <div class="star-rating">
-        <input type="radio" name="reception_rating" value="5" id="rr5" required><label for="rr5">★</label>
-        <input type="radio" name="reception_rating" value="4" id="rr4"><label for="rr4">★</label>
-        <input type="radio" name="reception_rating" value="3" id="rr3"><label for="rr3">★</label>
-        <input type="radio" name="reception_rating" value="2" id="rr2"><label for="rr2">★</label>
-        <input type="radio" name="reception_rating" value="1" id="rr1"><label for="rr1">★</label>
-      </div>
-
-      <label>How strongly would you recommend Deep Dive Dubai to Friends and Family? *</label>
-      <div class="star-rating">
-        <input type="radio" name="facility_rating" value="5" id="fr5" required><label for="fr5">★</label>
-        <input type="radio" name="facility_rating" value="4" id="fr4"><label for="fr4">★</label>
-        <input type="radio" name="facility_rating" value="3" id="fr3"><label for="fr3">★</label>
-        <input type="radio" name="facility_rating" value="2" id="fr2"><label for="fr2">★</label>
-        <input type="radio" name="facility_rating" value="1" id="fr1"><label for="fr1">★</label>
-      </div>
-
-      <label>How would you rate the diving equipment quality and condition? *</label>
-      <div class="star-rating">
-        <input type="radio" name="equipment_rating" value="5" id="eq5" required><label for="eq5">★</label>
-        <input type="radio" name="equipment_rating" value="4" id="eq4"><label for="eq4">★</label>
-        <input type="radio" name="equipment_rating" value="3" id="eq3"><label for="eq3">★</label>
-        <input type="radio" name="equipment_rating" value="2" id="eq2"><label for="eq2">★</label>
-        <input type="radio" name="equipment_rating" value="1" id="eq1"><label for="eq1">★</label>
-      </div>
-
-      <label>How safe did you feel during the dive? *</label>
-      <div class="star-rating">
-        <input type="radio" name="friendliness_rating" value="5" id="fd5" required><label for="fd5">★</label>
-        <input type="radio" name="friendliness_rating" value="4" id="fd4"><label for="fd4">★</label>
-        <input type="radio" name="friendliness_rating" value="3" id="fd3"><label for="fd3">★</label>
-        <input type="radio" name="friendliness_rating" value="2" id="fd2"><label for="fd2">★</label>
-        <input type="radio" name="friendliness_rating" value="1" id="fd1"><label for="fd1">★</label>
-      </div>
-
-      <label for="comments">Any final comments or suggestions? (optional)</label>
-      <textarea id="comments" name="comments" rows="3"></textarea>
-
-      <input type="submit" value="Submit">
-      <div id="formWarning"></div>
-    </form>
-  </div>
-
-  <script>
+<script>
   if (sessionStorage.getItem("submitted") === "true") {
     window.location.replace("index.html");
   }
 
+  const submitButton = document.querySelector('input[type="submit"]');
+
   document.getElementById('feedbackForm').addEventListener('submit', function (e) {
     e.preventDefault();
+
+    if (submitButton.disabled) return; // prevent double clicks
+
+    submitButton.disabled = true;
+    submitButton.value = "Sending...";
 
     const form = e.target;
     const formData = new FormData(form);
@@ -267,82 +68,85 @@
     if (!valid) {
       warning.textContent = "⚠️ Please fill in all required fields with a valid email address.";
       warning.style.display = "block";
+      submitButton.disabled = false;
+      submitButton.value = "Submit";
       return;
     }
-// Generate custom review string
-const reviewParts = [];
 
-const instructorName = form.instructor.value;
-const instructorRating = form.querySelector('input[name="instructor_rating"]:checked')?.value;
-const receptionRating = form.querySelector('input[name="reception_rating"]:checked')?.value;
-const facilityRating = form.querySelector('input[name="facility_rating"]:checked')?.value;
-const equipmentRating = form.querySelector('input[name="equipment_rating"]:checked')?.value;
-const friendlinessRating = form.querySelector('input[name="friendliness_rating"]:checked')?.value;
-const overallRating = form.querySelector('input[name="experience_rating"]:checked')?.value;
-const comments = form.comments.value?.trim();
+    // Generate custom review string
+    const reviewParts = [];
 
-if (instructorRating && instructorName) {
-  const text = {
-    5: `My instructor ${instructorName} was very friendly and I felt completely safe underwater.`,
-    4: `${instructorName} was professional and helpful throughout the dive.`,
-    3: `Instructor ${instructorName} provided a good experience.`,
-    2: `The dive instructor ${instructorName} was okay, but could improve.`,
-    1: `I didn't have the best experience with my instructor.`
-  };
-  reviewParts.push(text[instructorRating]);
-}
+    const instructorName = form.instructor.value;
+    const instructorRating = form.querySelector('input[name="instructor_rating"]:checked')?.value;
+    const receptionRating = form.querySelector('input[name="reception_rating"]:checked')?.value;
+    const facilityRating = form.querySelector('input[name="facility_rating"]:checked')?.value;
+    const equipmentRating = form.querySelector('input[name="equipment_rating"]:checked')?.value;
+    const friendlinessRating = form.querySelector('input[name="friendliness_rating"]:checked')?.value;
+    const overallRating = form.querySelector('input[name="experience_rating"]:checked')?.value;
+    const comments = form.comments.value?.trim();
 
-if (receptionRating) {
-  const text = {
-    5: "The reception was smooth and the team very welcoming.",
-    4: "Reception was great and everything was organized.",
-    3: "Reception was okay, but could be better.",
-    2: "Reception experience was a bit slow.",
-    1: "Reception experience wasn’t good."
-  };
-  reviewParts.push(text[receptionRating]);
-}
+    if (instructorRating && instructorName) {
+      const text = {
+        5: `My instructor ${instructorName} was very friendly and I felt completely safe underwater.`,
+        4: `${instructorName} was professional and helpful throughout the dive.`,
+        3: `Instructor ${instructorName} provided a good experience.`,
+        2: `The dive instructor ${instructorName} was okay, but could improve.`,
+        1: `I didn't have the best experience with my instructor.`
+      };
+      reviewParts.push(text[instructorRating]);
+    }
 
-if (facilityRating) {
-  const text = {
-    5: "The facility is outstanding and incredibly clean.",
-    4: "The facility is great and well-maintained.",
-    3: "Facility was decent.",
-    2: "Facility needs improvement.",
-    1: "Facility was disappointing."
-  };
-  reviewParts.push(text[facilityRating]);
-}
+    if (receptionRating) {
+      const text = {
+        5: "The reception was smooth and the team very welcoming.",
+        4: "Reception was great and everything was organized.",
+        3: "Reception was okay, but could be better.",
+        2: "Reception experience was a bit slow.",
+        1: "Reception experience wasn’t good."
+      };
+      reviewParts.push(text[receptionRating]);
+    }
 
-if (equipmentRating) {
-  const text = {
-    5: "The diving equipment was top-notch and in excellent condition.",
-    4: "The gear was very good and reliable.",
-    3: "The equipment was okay.",
-    2: "Some of the equipment could be better.",
-    1: "The equipment was not satisfactory."
-  };
-  reviewParts.push(text[equipmentRating]);
-}
+    if (facilityRating) {
+      const text = {
+        5: "The facility is outstanding and incredibly clean.",
+        4: "The facility is great and well-maintained.",
+        3: "Facility was decent.",
+        2: "Facility needs improvement.",
+        1: "Facility was disappointing."
+      };
+      reviewParts.push(text[facilityRating]);
+    }
 
-if (friendlinessRating) {
-  const text = {
-    5: "I felt extremely safe and well looked after throughout the dive.",
-    4: "I felt safe and comfortable during the dive.",
-    3: "I felt mostly safe, but there were some small concerns.",
-    2: "I didn’t feel fully safe during parts of the dive.",
-    1: "I felt unsafe and concerned during the dive."
-  };
-  reviewParts.push(text[friendlinessRating]);
-}
+    if (equipmentRating) {
+      const text = {
+        5: "The diving equipment was top-notch and in excellent condition.",
+        4: "The gear was very good and reliable.",
+        3: "The equipment was okay.",
+        2: "Some of the equipment could be better.",
+        1: "The equipment was not satisfactory."
+      };
+      reviewParts.push(text[equipmentRating]);
+    }
 
-if (comments) {
-  reviewParts.push(comments);
-}
+    if (friendlinessRating) {
+      const text = {
+        5: "I felt extremely safe and well looked after throughout the dive.",
+        4: "I felt safe and comfortable during the dive.",
+        3: "I felt mostly safe, but there were some small concerns.",
+        2: "I didn’t feel fully safe during parts of the dive.",
+        1: "I felt unsafe and concerned during the dive."
+      };
+      reviewParts.push(text[friendlinessRating]);
+    }
 
-// Save the review string in sessionStorage
-const customReview = `🌟🌟🌟🌟🌟\n${reviewParts.join(" ")}`;
-sessionStorage.setItem("reviewText", customReview);
+    if (comments) {
+      reviewParts.push(comments);
+    }
+
+    // Save the review string in sessionStorage
+    const customReview = `🌟🌟🌟🌟🌟\n${reviewParts.join(" ")}`;
+    sessionStorage.setItem("reviewText", customReview);
 
     fetch("https://script.google.com/macros/s/AKfycbz0Lw07JhSNVRqtIO0G5c18DReUVmjvE26MnVb_gctLcOKXPZsms0tf_lG6HX6pFXrN0g/exec", {
       method: "POST",
@@ -357,9 +161,8 @@ sessionStorage.setItem("reviewText", customReview);
     .catch(err => {
       console.error("Submission error:", err);
       alert("Something went wrong!");
+      submitButton.disabled = false;
+      submitButton.value = "Submit";
     });
   });
 </script>
-
-</body>
-</html>
