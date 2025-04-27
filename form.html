@@ -103,7 +103,7 @@
   <div class="form-container">
     <img src="https://storage.googleapis.com/freedivinguae.com/2022/03/59a19db5-ddd_englishlogo.png" alt="Logo" class="form-logo">
 
-    <h1></h1>
+    <h1>Deep Dive Dubai Guest Feedback</h1>
     <form id="feedbackForm" novalidate>
       <label for="name">First Name *</label>
       <input type="text" name="name" id="name" required>
@@ -126,29 +126,29 @@
       <label for="instructor">Who was your dive instructor? (optional)</label>
       <select name="instructor" id="instructor">
         <option value="">-- Select Instructor --</option>
-       <option>Dario</option>
-  <option>Sergei</option>
-  <option>Anastasia</option>
-  <option>Andy</option>
-  <option>Lier</option>
-  <option>Mustafa</option>
-  <option>Hanni</option>
-  <option>Abdo</option>
-  <option>Charlie</option>
-  <option>Ericson</option>
-  <option>Tito</option>
-  <option>Imantha</option>
-  <option>Evangeline</option>
-  <option>Imane</option>
-  <option>Riccardo</option>
-  <option>Mohab</option>
-  <option>Haridi</option>
-  <option>Ernest</option>
-  <option>Yehya</option>
-  <option>Jesper</option>
-  <option>Dimitris</option>
-  <option>Jarrod</option>
-  <option>Richard</option>
+        <option>Dario</option>
+        <option>Sergei</option>
+        <option>Anastasia</option>
+        <option>Andy</option>
+        <option>Lier</option>
+        <option>Mustafa</option>
+        <option>Hanni</option>
+        <option>Abdo</option>
+        <option>Charlie</option>
+        <option>Ericson</option>
+        <option>Tito</option>
+        <option>Imantha</option>
+        <option>Evangeline</option>
+        <option>Imane</option>
+        <option>Riccardo</option>
+        <option>Mohab</option>
+        <option>Haridi</option>
+        <option>Ernest</option>
+        <option>Yehya</option>
+        <option>Jesper</option>
+        <option>Dimitris</option>
+        <option>Jarrod</option>
+        <option>Richard</option>
       </select>
 
       <label>How would you rate your instructor? *</label>
@@ -159,7 +159,6 @@
         <input type="radio" name="instructor_rating" value="2" id="ir2"><label for="ir2">★</label>
         <input type="radio" name="instructor_rating" value="1" id="ir1"><label for="ir1">★</label>
       </div>
-
       <label>How would you rate the customer service? *</label>
       <div class="star-rating">
         <input type="radio" name="reception_rating" value="5" id="rr5" required><label for="rr5">★</label>
@@ -199,166 +198,170 @@
       <label for="comments">Any final comments or suggestions? (optional)</label>
       <textarea id="comments" name="comments" rows="3"></textarea>
 
-      <input type="submit" value="Submit">
+      <input type="submit" id="submitButton" value="Submit">
       <div id="formWarning"></div>
     </form>
   </div>
+<script>
+if (sessionStorage.getItem("submitted") === "true") {
+  window.location.replace("index.html");
+}
 
-  <script>
-  if (sessionStorage.getItem("submitted") === "true") {
-    window.location.replace("index.html");
+document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const warning = document.getElementById("formWarning");
+  const submitButton = document.getElementById("submitButton");
+
+  warning.style.display = "none";
+
+  let valid = true;
+
+  // Clear previous error styles
+  form.querySelectorAll("input, select, textarea").forEach(el => {
+    el.style.border = "none";
+  });
+
+  form.querySelectorAll("[required]").forEach(input => {
+    let hasError = false;
+    if (input.type === "radio") {
+      const name = input.name;
+      const checked = form.querySelector(`input[name="${name}"]:checked`);
+      if (!checked) {
+        hasError = true;
+        form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
+          label.style.border = "2px solid red";
+          label.style.borderRadius = "5px";
+        });
+      } else {
+        form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
+          label.style.border = "none";
+        });
+      }
+    } else {
+      if (!input.value.trim()) {
+        hasError = true;
+        input.style.border = "2px solid red";
+      } else {
+        input.style.border = "none";
+      }
+    }
+    if (hasError) valid = false;
+  });
+
+  // Email format check
+  const emailInput = document.getElementById("email");
+  const emailValue = emailInput.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailValue)) {
+    emailInput.style.border = "2px solid red";
+    valid = false;
+  } else {
+    emailInput.style.border = "none";
   }
 
-  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+  if (!valid) {
+    warning.textContent = "⚠️ Please fill in all required fields with a valid email address.";
+    warning.style.display = "block";
+    return;
+  }
 
-    const form = e.target;
-    const formData = new FormData(form);
-    const warning = document.getElementById("formWarning");
-    warning.style.display = "none";
+  // Disable submit button to prevent multiple clicks
+  submitButton.disabled = true;
+  submitButton.value = "Submitting... Please wait";
 
-    let valid = true;
+  // Generate custom review text
+  const reviewParts = [];
+  const instructorName = form.instructor.value;
+  const instructorRating = form.querySelector('input[name="instructor_rating"]:checked')?.value;
+  const receptionRating = form.querySelector('input[name="reception_rating"]:checked')?.value;
+  const facilityRating = form.querySelector('input[name="facility_rating"]:checked')?.value;
+  const equipmentRating = form.querySelector('input[name="equipment_rating"]:checked')?.value;
+  const friendlinessRating = form.querySelector('input[name="friendliness_rating"]:checked')?.value;
+  const overallRating = form.querySelector('input[name="experience_rating"]:checked')?.value;
+  const comments = form.comments.value?.trim();
 
-    // Clear previous error styles
-    form.querySelectorAll("input, select, textarea").forEach(el => {
-      el.style.border = "none";
-    });
+  if (instructorRating && instructorName) {
+    const text = {
+      5: `My instructor ${instructorName} was very friendly and I felt completely safe underwater.`,
+      4: `${instructorName} was professional and helpful throughout the dive.`,
+      3: `Instructor ${instructorName} provided a good experience.`,
+      2: `The dive instructor ${instructorName} was okay, but could improve.`,
+      1: `I didn't have the best experience with my instructor.`
+    };
+    reviewParts.push(text[instructorRating]);
+  }
 
-    form.querySelectorAll("[required]").forEach(input => {
-      let hasError = false;
+  if (receptionRating) {
+    const text = {
+      5: "The reception was smooth and the team very welcoming.",
+      4: "Reception was great and everything was organized.",
+      3: "Reception was okay, but could be better.",
+      2: "Reception experience was a bit slow.",
+      1: "Reception experience wasn’t good."
+    };
+    reviewParts.push(text[receptionRating]);
+  }
 
-      if (input.type === "radio") {
-        const name = input.name;
-        const checked = form.querySelector(`input[name="${name}"]:checked`);
-        if (!checked) {
-          hasError = true;
-          form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
-            label.style.border = "2px solid red";
-            label.style.borderRadius = "5px";
-          });
-        } else {
-          form.querySelectorAll(`input[name="${name}"] + label`).forEach(label => {
-            label.style.border = "none";
-          });
-        }
-      } else {
-        if (!input.value.trim()) {
-          hasError = true;
-          input.style.border = "2px solid red";
-        } else {
-          input.style.border = "none";
-        }
-      }
+  if (facilityRating) {
+    const text = {
+      5: "The facility is outstanding and incredibly clean.",
+      4: "The facility is great and well-maintained.",
+      3: "Facility was decent.",
+      2: "Facility needs improvement.",
+      1: "Facility was disappointing."
+    };
+    reviewParts.push(text[facilityRating]);
+  }
 
-      if (hasError) valid = false;
-    });
+  if (equipmentRating) {
+    const text = {
+      5: "The diving equipment was top-notch and in excellent condition.",
+      4: "The gear was very good and reliable.",
+      3: "The equipment was okay.",
+      2: "Some of the equipment could be better.",
+      1: "The equipment was not satisfactory."
+    };
+    reviewParts.push(text[equipmentRating]);
+  }
 
-    // Email format check
-    const emailInput = document.getElementById("email");
-    const emailValue = emailInput.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailValue)) {
-      emailInput.style.border = "2px solid red";
-      valid = false;
-    } else {
-      emailInput.style.border = "none";
-    }
+  if (friendlinessRating) {
+    const text = {
+      5: "I felt extremely safe and well looked after throughout the dive.",
+      4: "I felt safe and comfortable during the dive.",
+      3: "I felt mostly safe, but there were some small concerns.",
+      2: "I didn’t feel fully safe during parts of the dive.",
+      1: "I felt unsafe and concerned during the dive."
+    };
+    reviewParts.push(text[friendlinessRating]);
+  }
 
-    if (!valid) {
-      warning.textContent = "⚠️ Please fill in all required fields with a valid email address.";
-      warning.style.display = "block";
-      return;
-    }
-// Generate custom review string
-const reviewParts = [];
+  if (comments) {
+    reviewParts.push(comments);
+  }
 
-const instructorName = form.instructor.value;
-const instructorRating = form.querySelector('input[name="instructor_rating"]:checked')?.value;
-const receptionRating = form.querySelector('input[name="reception_rating"]:checked')?.value;
-const facilityRating = form.querySelector('input[name="facility_rating"]:checked')?.value;
-const equipmentRating = form.querySelector('input[name="equipment_rating"]:checked')?.value;
-const friendlinessRating = form.querySelector('input[name="friendliness_rating"]:checked')?.value;
-const overallRating = form.querySelector('input[name="experience_rating"]:checked')?.value;
-const comments = form.comments.value?.trim();
+  const customReview = `🌟🌟🌟🌟🌟\n${reviewParts.join(" ")}`;
+  sessionStorage.setItem("reviewText", customReview);
 
-if (instructorRating && instructorName) {
-  const text = {
-    5: `My instructor ${instructorName} was very friendly and I felt completely safe underwater.`,
-    4: `${instructorName} was professional and helpful throughout the dive.`,
-    3: `Instructor ${instructorName} provided a good experience.`,
-    2: `The dive instructor ${instructorName} was okay, but could improve.`,
-    1: `I didn't have the best experience with my instructor.`
-  };
-  reviewParts.push(text[instructorRating]);
-}
-
-if (receptionRating) {
-  const text = {
-    5: "The reception was smooth and the team very welcoming.",
-    4: "Reception was great and everything was organized.",
-    3: "Reception was okay, but could be better.",
-    2: "Reception experience was a bit slow.",
-    1: "Reception experience wasn’t good."
-  };
-  reviewParts.push(text[receptionRating]);
-}
-
-if (facilityRating) {
-  const text = {
-    5: "The facility is outstanding and incredibly clean.",
-    4: "The facility is great and well-maintained.",
-    3: "Facility was decent.",
-    2: "Facility needs improvement.",
-    1: "Facility was disappointing."
-  };
-  reviewParts.push(text[facilityRating]);
-}
-
-if (equipmentRating) {
-  const text = {
-    5: "The diving equipment was top-notch and in excellent condition.",
-    4: "The gear was very good and reliable.",
-    3: "The equipment was okay.",
-    2: "Some of the equipment could be better.",
-    1: "The equipment was not satisfactory."
-  };
-  reviewParts.push(text[equipmentRating]);
-}
-
-if (friendlinessRating) {
-  const text = {
-    5: "I felt extremely safe and well looked after throughout the dive.",
-    4: "I felt safe and comfortable during the dive.",
-    3: "I felt mostly safe, but there were some small concerns.",
-    2: "I didn’t feel fully safe during parts of the dive.",
-    1: "I felt unsafe and concerned during the dive."
-  };
-  reviewParts.push(text[friendlinessRating]);
-}
-
-if (comments) {
-  reviewParts.push(comments);
-}
-
-// Save the review string in sessionStorage
-const customReview = `🌟🌟🌟🌟🌟\n${reviewParts.join(" ")}`;
-sessionStorage.setItem("reviewText", customReview);
-
-    fetch("https://script.google.com/macros/s/AKfycbz0Lw07JhSNVRqtIO0G5c18DReUVmjvE26MnVb_gctLcOKXPZsms0tf_lG6HX6pFXrN0g/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.text())
-    .then(text => {
-      console.log("Response:", text);
-      sessionStorage.setItem("submitted", "true");
-      window.location.replace("thankyou.html");
-    })
-    .catch(err => {
-      console.error("Submission error:", err);
-      alert("Something went wrong!");
-    });
+  fetch("https://script.google.com/macros/s/AKfycbz0Lw07JhSNVRqtIO0G5c18DReUVmjvE26MnVb_gctLcOKXPZsms0tf_lG6HX6pFXrN0g/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(text => {
+    console.log("Response:", text);
+    sessionStorage.setItem("submitted", "true");
+    window.location.replace("thankyou.html");
+  })
+  .catch(err => {
+    console.error("Submission error:", err);
+    alert("Something went wrong!");
+    submitButton.disabled = false;
+    submitButton.value = "Submit"; // Re-enable if error
   });
+});
 </script>
 
 </body>
